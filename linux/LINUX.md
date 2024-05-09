@@ -36,3 +36,22 @@ command ` cat /etc/os-release `
     echo MYNAME
 ```
 2. Global environment variable. Need to set variable in bashrc. It is available for all.
+
+
+### User Management
+
+. **User List**: To see user List. Command ` cat /etc/passwd `
+
+. **useradd**: Create new user in linux. Command: ` sudo useradd test ` 
+
+. **User add with Group**: Command: ` sudo useradd test -g 1002 `
+
+. **User details**: `  test:x:1002:1002::/home/test:/bin/sh` . First portion is username. Second one is password here is empty. 3rd is user's unique identifier. 4th is group id. 5th is some information regarding user. 6th is Directory where user first land after log in. 7th is default terminal.
+
+. **Delete user**: command: ` sudo userdel test `
+
+. **adduser**: For creating user in most descriptive way, use adduser command. ` sudo adduser test `
+
+. **usermod**: Usermod use for update information after creating it.
+
+. **Change password**: Change password after creating user. Command: ` sudo passwd test `
