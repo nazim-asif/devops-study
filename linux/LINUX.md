@@ -55,3 +55,27 @@ command ` cat /etc/os-release `
 . **usermod**: Usermod use for update information after creating it.
 
 . **Change password**: Change password after creating user. Command: ` sudo passwd test `
+
+### Groups in Linux
+
+. To add a group in Linux, use the groupadd command: ` sudo groupadd demo `
+
+. If you want to create a group with a specific group ID (GID), use the --gid or -g option. Command: ` sudo groupadd -g 1009 demo1 `
+
+. You can change the group ID of any group with the groupmod command and the --gid or -g option: Command: ` sudo groupmod -g 1011 demo1 `
+
+. You can rename a group using groupmod with the --new-name or -n option. Command: ` sudo groupmod -n test demo1 `
+
+. Suppose you have existing users named user1 and user2, and you want to add them to the demo group. Use the usermod command with the --append --groups options (-a and -G for short). Command
+```
+    
+    sudo usermod --append --groups demo user1
+
+    sudo usermod -aG demo user2
+    
+    
+```
+
+. To remove a specific user from a group, you can use the gpasswd command to modify group information. Command: ` sudo gpasswd --delete user1 demo  `
+
+
