@@ -19,3 +19,20 @@ Command: ` touch original_file `
          ln original_file hard_link    
 
 
+### System information
+
+command ` uname -a `
+
+### OS information
+
+command ` cat /etc/os-release `
+
+### Environment variable
+
+1. local environment variable. it is available only for same terminal.
+    command 
+``` 
+    export MYNAME=asif
+    echo MYNAME
+```
+2. Global environment variable. Need to set variable in bashrc. It is available for all.
