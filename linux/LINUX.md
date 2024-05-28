@@ -78,4 +78,40 @@ command ` cat /etc/os-release `
 
 . To remove a specific user from a group, you can use the gpasswd command to modify group information. Command: ` sudo gpasswd --delete user1 demo  `
 
+### ACL (Access Control List)
+
+List of commands for setting up ACL :
+
+1) To add permission for user
+
+   ``` setfacl -m "u:user1:rwx" /path/to/file ```
+
+2) To add permissions for a group
+
+   ``` setfacl -m "g:group1:rw" /path/to/file ```
+
+3) To allow all files or directories to inherit ACL entries from the directory it is within
+
+   ``` setfacl -dm "entry" /path/to/dir  ```
+
+Example: 
+    ``` setfacl -dm u:user1:rw /data/projects ```
+
+4) To remove a specific entry
+
+   ``` setfacl -x "entry" /path/to/file ```
+
+Example:
+
+``` setfacl -x u:user1 /data/projects/example.txt ```
+
+5) To remove all entries
+
+   ``` setfacl -b path/to/file```
+
+6) To show the status 
+
+``` getfacl /data/projects/example.txt  ```
+
+There has another option to give permission which is **chmod** but problem is Limited to basic owner, group, others model where setfacl is Provides detailed and granular control over permissions for multiple users and groups.
 
