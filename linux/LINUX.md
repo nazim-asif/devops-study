@@ -115,3 +115,21 @@ Example:
 
 There has another option to give permission which is **chmod** but problem is Limited to basic owner, group, others model where setfacl is Provides detailed and granular control over permissions for multiple users and groups.
 
+### Help command in linux
+
+There are three help command in linux
+
+1. man (Manual Pages): The man command provides a comprehensive set of manual pages for most commands and applications. 
+
+```man <command> ```
+
+Example: ``` man ls ```
+
+2. --help Option: Most command-line utilities provide a --help or -h option that displays a summary of the command's usage and available options. Usage:
+``` <command> --help ```
+Example: ``` ls --help ```
+
+3. whatis Command: The whatis command provides a brief description of a command. Usage:
+
+```whatis <command>```
+Example: ```whatis ls ```
