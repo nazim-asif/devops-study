@@ -256,3 +256,26 @@ Example: ` ls -l | tail -1 `
     - Split a file into smaller parts: ` split -b 1M largefile.bin smallfile_ `.
     - Split a file into smaller parts based on lines: ` split -l 1000 largefile.txt smallfile_ `.
 
+
+### Monitor Users
+
+1. **who** Command: The who command shows who is currently logged into the system. ` who `.
+2. **last** Command: The last command shows a list of the most recent logins on the system. ` last `.
+3. **w** Command: The w command shows who is logged on and what they are doing. ` w `.
+4. **id** Command: The id command shows user and group information for a specified user or the current user.
+    - Show the current user’s ID and groups: ` id `.
+    - Show the ID and groups for a specific user: ` id username `.
+
+
+### Communicating with users
+
+1. **users** Command: The users command shows a quick list of users currently logged into the system. ` users `.
+2. **wall** Command: The wall (write all) command is used to send a message to all users currently logged into the system. ` wall "System maintenance will begin in 10 minutes." `
+3. **write** Command:
+    - Send a message to a specific user:
+      - Start writing a message: ` write user2 `.
+      - Type the message: ` Hello, can you check the server logs? `.
+      - End the message with Ctrl+D.
+
+
+
