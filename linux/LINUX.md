@@ -277,5 +277,34 @@ Example: ` ls -l | tail -1 `
       - Type the message: ` Hello, can you check the server logs? `.
       - End the message with Ctrl+D.
 
+### system utility command
+
+1. **date** Command: 
+    - Display the current date and time: ` date `.
+    - Custom format (e.g., Year-Month-Day Hour:Minute ): ` date +"%Y-%m-%d %H:%M:%S" `.
+2. **uptime** Command: The uptime command shows how long the system has been running, along with the number of users and the system load averages. ` uptime `.
+3. **cal** Command: ` cal `.
+4. **bc** Command: ` bc `.
+5. **hostname** Command: 
+    - Display the current hostname: ` hostname `.
+    - Set the hostname (requires superuser privileges): ` sudo hostname newhostname `.
+6. **uname** Command:
+    - Display basic system information: ` uname `.
+    - Display all system information: ` uname -a `.
+   
+   Example: ` Linux myhostname 5.4.0-74-generic #83-Ubuntu SMP Fri May 14 19:00:11 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux `
+      
+     This output shows:
+
+      - Kernel name (Linux)
+      - Hostname (myhostname)
+      - Kernel release (5.4.0-74-generic)
+      - Kernel version (#83-Ubuntu SMP Fri May 14 19:00:11 UTC 2023)
+      - Machine (x86_64)
+      - Processor (x86_64)
+      - Hardware platform (x86_64)
+      - Operating system (GNU/Linux)
+7. **which** : it gives directory path of where the command exists. ` which ls `. 
+
 
 
