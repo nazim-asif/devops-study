@@ -306,5 +306,122 @@ Example: ` ls -l | tail -1 `
       - Operating system (GNU/Linux)
 7. **which** : it gives directory path of where the command exists. ` which ls `. 
 
+### systemctl command
+
+1. Start a service: ` systemctl start service_name `.
+2. Stop a service: ` systemctl stop service_name `.
+3. Restart a service: ` systemctl restart service_name `.
+4. Reload the configuration of a service without interrupting its operation: ` systemctl reload service_name `.
+5. List all active services: ` systemctl list-units --type=service `.
+
+### **ps** command
+
+1. Basic process listing: ` ps `.
+2. Detailed process listing (user-oriented): ` ps aux `.
+3. Detailed process listing (full format): `  ps -ef `.
+4. Find specific processes by name: ` ps aux | grep process_name
+   ps -ef | grep process_name `.
+5. List processes for a specific user: `  ps -u username `.
+
+### **top** command
+
+1. Basic Usage: ` top `.
+2. Common Interactive Commands:
+
+    - q: Quit
+    - h: Help
+    - k: Kill process
+    - r: Renice process
+    - P: Sort by CPU usage
+    - M: Sort by memory usage
+    - N: Sort by PID
+    - T: Sort by time
+
+3. Filtering by User: ` top -u username `.
+4. Batch Mode: ` top -b -n 1 > top_output.txt `.
+
+
+### **crontab** command:
+
+1. Basic Usage: ` crontab [options] `
+
+   Common Options
+   - `crontab -e`: Edit the current user's crontab file.
+   - `crontab -l`: List the current user's crontab entries.
+   - `crontab -r`: Remove the current user's crontab file.
+   - `crontab -u user`: Specify a different user (requires superuser privileges).
+
+2. Crontab File Format: See internet for format.
+3. Example: Automating a Backup Script
+    - Open the crontab editor: ` crontab -e `.
+    - Add the following line to the crontab file: ` 0 3 * * * /home/user/scripts/backup.sh `.
+    - Save and exit the editor.
+
+### **at** command:
+
+The at command in Unix/Linux is used to schedule commands to be executed at a specific time in the future. Unlike cron, which is used for recurring tasks, at is designed for one-time tasks.
+
+1. Basic Usage: ` at [OPTION] TIME `.
+
+   Common Options:
+    - l or atq: List pending jobs for the current user.
+    - d or atrm JOB_ID: Remove a scheduled job.
+    - f FILE: Read the job to be scheduled from a file.
+
+### process management commands
+
+for process management we can use **bg** for background. for **fg** for retruning back from background to forground. Use **nohup** for running process as background and **nice** command for prioritise running the process.
+
+### system monitoring command
+
+1. **top**
+2. **vmstat** command: ` vmstat [options] [delay [count]] `
+    - delay: The time interval (in seconds) between each report.
+    - count: The number of reports to generate.
+    - Common Options:
+      - a: Display active and inactive memory.
+      - d: Report disk statistics.
+      - p <partition>: Report statistics for a specific partition.
+      - s: Display a table of various event counters and memory statistics.
+      - t: Add a timestamp to each line of output.
+      - w: Wide output mode (for systems with many CPUs).
+    - Output Columns: When you run vmstat, it provides a tabular output with multiple columns, each representing different metrics. Here’s a breakdown of the key columns:
+
+      - Process
+        - r: The number of runnable processes (running or waiting for CPU).
+        - b: The number of processes in uninterruptible sleep (usually IO).
+      - Memory
+        - swpd: The amount of virtual memory used (swap space) in kilobytes.
+        - free: The amount of idle memory in kilobytes.
+        - buff: The amount of memory used as buffers in kilobytes.
+        - cache: The amount of memory used as cache in kilobytes.
+      - Swap
+        - si: The amount of memory swapped in from disk (per second).
+        - so: The amount of memory swapped out to disk (per second).
+      - IO
+        - bi: Blocks received from a block device (per second).
+        - bo: Blocks sent to a block device (per second).
+      - System
+        - in: The number of interrupts per second, including the clock.
+        - cs: The number of context switches per second.
+      - CPU
+        - us: Time spent running non-kernel code (user time, including nice time).
+        - sy: Time spent running kernel code (system time).
+        - id: Time spent idle.
+        - wa: Time spent waiting for IO.
+        - st: Time stolen from a virtual machine (hypervisor).
+        
+3. **iostat** command: The iostat command provides statistics on CPU and input/output (I/O) device utilization.
+    - Basic usage: ` iostat `.
+    - Detailed output with device statistics: ` iostat -xd `.
+
+4. **free** command: The free command displays the amount of free and used memory in the system.
+    - Basic usage: ` free `.
+    - Human-readable format: ` free -h `.
+
+5. **df** , **du**, **mpstat**, **netstat**, **ss**, **sar**, **uptime**, **dstat**, **lsof**
+    
+
+
 
 
