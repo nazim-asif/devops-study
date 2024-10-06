@@ -1,7 +1,25 @@
 ![kubernets architecture](https://github.com/nazim-asif/devops-study/blob/main/k8s/kubernet.png)
 
-
 Kubernetes (K8s) has a master-worker architecture that is designed to automate the deployment, scaling, and management of containerized applications. This architecture is composed of various components that work together to manage the entire lifecycle of applications in a cluster.
+
+
+### Working with Kubernetes
+
+1. **We Create manifest (.yml):** Define the desired state of Kubernetes objects (e.g., pods, services, deployments) in a YAML manifest file.
+
+2. **Apply Manifest to the Cluster (to master):** 
+  
+  i. Use kubectl apply -f <file.yml> to send the manifest to the Kubernetes API server on the master node.
+
+  ii. The API server processes the request and updates the etcd database, which holds the cluster’s desired state.
+
+3. **Pod Runs on Node:**
+
+  i. The scheduler assigns the pod to a suitable worker node based on resource availability and constraints.
+
+  ii. The kubelet on the worker node pulls the container image and starts the pod.
+
+  iii. The master node continues to control and monitor the worker node, ensuring the pod stays in the desired state.
 
 ### Role of Master Node
 
