@@ -1,12 +1,7 @@
 ![kubernets architecture](https://github.com/nazim-asif/devops-study/blob/main/k8s/kubernet.png)
 
-### Working with Kubernetes
 
-→ We Create manifest (.yml)
-
-→ Apply this to Cluster (to master) to bring into desired state
-
-→ Pod runs on node, which is Controlled by master
+Kubernetes (K8s) has a master-worker architecture that is designed to automate the deployment, scaling, and management of containerized applications. This architecture is composed of various components that work together to manage the entire lifecycle of applications in a cluster.
 
 ### Role of Master Node
 
