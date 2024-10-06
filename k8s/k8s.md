@@ -1,3 +1,5 @@
+![kubernets architecture](https://github.com/nazim-asif/devops-study/blob/main/k8s/kubernet.png)
+
 ### Working with Kubernetes
 
 → We Create manifest (.yml)
