@@ -114,14 +114,14 @@ In Kubernetes, the master node (also called the control plane) is responsible fo
 
 4. **POD:** A pod is the smallest and most basic unit in Kubernetes. It represents a single instance of a running process in your cluster and typically consists of one or more tightly coupled containers that share resources like networking and storage.
 
-#### Key Characteristics of a Pod:
-
-   i. **Single or Multiple Containers:** A pod can run one container (the most common use case) or multiple containers that work together closely (e.g., a web server and a logging sidecar container).
-
-   ii. **Shared Resources:**
-   * Networking: Containers in a pod share the same network namespace and IP address. They can communicate with each other using localhost, and external communication is handled by the Kubernetes networking system.
-   * Storage: Pods can use shared volumes (persistent or ephemeral) for storing data that containers need to access.
+    Key Characteristics of a Pod:
   
-   iii. **Ephemeral Nature:** Pods are designed to be ephemeral. They are created, run, and then destroyed. If a pod fails, Kubernetes will not restart the same pod but will instead create a new pod based on the desired state defined in a controller like a Deployment or ReplicaSet.
-
-   iv. **Deployment Unit:** Pods are the unit of deployment in Kubernetes. When you deploy an application, you are actually deploying pods. Each pod is scheduled on a node by the kube-scheduler, and the kubelet ensures the pod is running as intended.
+     i. **Single or Multiple Containers:** A pod can run one container (the most common use case) or multiple containers that work together closely (e.g., a web server and a logging sidecar container).
+  
+     ii. **Shared Resources:**
+     * Networking: Containers in a pod share the same network namespace and IP address. They can communicate with each other using localhost, and external communication is handled by the Kubernetes networking system.
+     * Storage: Pods can use shared volumes (persistent or ephemeral) for storing data that containers need to access.
+    
+     iii. **Ephemeral Nature:** Pods are designed to be ephemeral. They are created, run, and then destroyed. If a pod fails, Kubernetes will not restart the same pod but will instead create a new pod based on the desired state defined in a controller like a Deployment or ReplicaSet.
+  
+     iv. **Deployment Unit:** Pods are the unit of deployment in Kubernetes. When you deploy an application, you are actually deploying pods. Each pod is scheduled on a node by the kube-scheduler, and the kubelet ensures the pod is running as intended.
