@@ -85,24 +85,28 @@ In Kubernetes, the master node (also called the control plane) is responsible fo
   ##### Key Components of a Node:
 1. **kubelet:**
 
-  i. **Role:** Agent responsible for ensuring that containers are running in pods on the node.
-  ii. **Function:**
-  * Communicates with the API server to receive instructions (e.g., start a pod).
-  * Monitors the health of pods running on the node and reports back to the control plane.
-  * Ensures that the actual state of the containers matches the desired state as specified in the pod spec.
-  * Manages the lifecycle of containers (starting, stopping, or restarting them as needed).
+    i. **Role:** Agent responsible for ensuring that containers are running in pods on the node.
+
+    ii. **Function:**
+    * Communicates with the API server to receive instructions (e.g., start a pod).
+      * Monitors the health of pods running on the node and reports back to the control plane.
+      * Ensures that the actual state of the containers matches the desired state as specified in the pod spec.
+      * Manages the lifecycle of containers (starting, stopping, or restarting them as needed).
 
 2. **kube-proxy:**
 
-  i. **Role:** Manages networking and enables communication within and between nodes.
-  ii. **Function:**
-  * Ensures that each pod can communicate with other pods, services, and external traffic.
-  * Maintains network rules on the node and routes traffic to the appropriate containers based on IP addresses and ports.
-  * Implements load balancing across pods in a service, ensuring even distribution of traffic.
-  * Manages NAT (Network Address Translation) to route incoming requests to the correct pod.
+    i. **Role:** Manages networking and enables communication within and between nodes.
+
+    ii. **Function:**
+    * Ensures that each pod can communicate with other pods, services, and external traffic.
+      * Maintains network rules on the node and routes traffic to the appropriate containers based on IP addresses and ports.
+      * Implements load balancing across pods in a service, ensuring even distribution of traffic.
+      * Manages NAT (Network Address Translation) to route incoming requests to the correct pod.
+    
 3. **Container Runtime/Container engine:**
 
   i. **Role:** Runs and manages the containers in the pods.
+
   ii. **Function:**
   * The software that actually runs containers. Popular container runtimes include Docker, containerd, and CRI-O.
   * The container runtime pulls container images from registries, starts containers, and manages their lifecycle (start, stop, and delete).
@@ -111,9 +115,13 @@ In Kubernetes, the master node (also called the control plane) is responsible fo
 4. **POD:** A pod is the smallest and most basic unit in Kubernetes. It represents a single instance of a running process in your cluster and typically consists of one or more tightly coupled containers that share resources like networking and storage.
 
 #### Key Characteristics of a Pod:
+
   i. **Single or Multiple Containers:** A pod can run one container (the most common use case) or multiple containers that work together closely (e.g., a web server and a logging sidecar container).
+
   ii. **Shared Resources:**
    * Networking: Containers in a pod share the same network namespace and IP address. They can communicate with each other using localhost, and external communication is handled by the Kubernetes networking system.
    * Storage: Pods can use shared volumes (persistent or ephemeral) for storing data that containers need to access.
+  
   iii. **Ephemeral Nature:** Pods are designed to be ephemeral. They are created, run, and then destroyed. If a pod fails, Kubernetes will not restart the same pod but will instead create a new pod based on the desired state defined in a controller like a Deployment or ReplicaSet.
+
   iv. **Deployment Unit:** Pods are the unit of deployment in Kubernetes. When you deploy an application, you are actually deploying pods. Each pod is scheduled on a node by the kube-scheduler, and the kubelet ensures the pod is running as intended.
