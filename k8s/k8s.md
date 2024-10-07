@@ -120,7 +120,7 @@ In Kubernetes, the master node (also called the control plane) is responsible fo
 
    ii. **Shared Resources:**
    * Networking: Containers in a pod share the same network namespace and IP address. They can communicate with each other using localhost, and external communication is handled by the Kubernetes networking system.
-     * Storage: Pods can use shared volumes (persistent or ephemeral) for storing data that containers need to access.
+   * Storage: Pods can use shared volumes (persistent or ephemeral) for storing data that containers need to access.
   
    iii. **Ephemeral Nature:** Pods are designed to be ephemeral. They are created, run, and then destroyed. If a pod fails, Kubernetes will not restart the same pod but will instead create a new pod based on the desired state defined in a controller like a Deployment or ReplicaSet.
 
