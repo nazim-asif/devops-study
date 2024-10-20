@@ -113,3 +113,218 @@ spec:
       nodePort: 30007
 
 ```
+
+## 4. ReplicaSet
+
+### Description:
+A **ReplicaSet** ensures that a specified number of replicas of a Pod are running at any given time.
+
+### Purpose:
+- Ensures high availability by maintaining the desired number of replicas of Pods.
+- Automatically replaces failed or terminated Pods.
+- Usually, **ReplicaSets** are indirectly managed by **Deployments**, which offer more advanced features (like rolling updates).
+
+### Use Case:
+- Scaling Pods up or down based on the desired number of replicas.
+
+### Example:
+
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+```
+
+## 5. StatefulSet 
+
+A **StatefulSet** manages stateful applications in Kubernetes, ensuring each Pod has a unique identity, stable network address, and persistent storage. It's used when the order of Pod creation, deletion, and persistence matters.
+
+## Key Features:
+- **Stable Pod Identity**: Each Pod has a consistent name (e.g., `myapp-0`, `myapp-1`), which remains the same after restarts.
+- **Stable Network Identity**: Pods have stable hostnames, ensuring consistent communication.
+- **Persistent Storage**: Each Pod gets its own persistent storage, retained even when the Pod is deleted or rescheduled.
+- **Ordered Creation and Deletion**: Pods are created and deleted in a defined order, important for applications needing controlled startup and shutdown sequences.
+
+## Use Cases:
+- Databases (e.g., MySQL, MongoDB)
+- Distributed systems (e.g., Kafka, Zookeeper)
+- Applications requiring unique Pod identities or persistent data.
+
+## Example YAML:
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: myapp
+spec:
+  serviceName: "myapp-service"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp-container
+          image: myapp:latest
+  volumeClaimTemplates:
+    - metadata:
+        name: myapp-storage
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
+```
+
+### Differences from Deployment:
+Pods in a StatefulSet are unique and maintain persistent storage, while Deployments manage stateless Pods without these guarantees. Use StatefulSet for stateful applications that need data persistence and ordered Pod management.
+
+## 6. DaemonSet
+
+### Description:
+A **DaemonSet** ensures that a specific pod runs on all (or selected) nodes in the cluster.
+
+### Purpose:
+- Deploys pods that need to run on every node, such as logging agents, monitoring agents, or network proxies.
+- When new nodes are added to the cluster, the DaemonSet automatically runs a pod on those nodes.
+
+### Use Case:
+- Deploying system-level applications on all nodes like log collectors (e.g., Fluentd), monitoring agents (e.g., Prometheus), or networking solutions.
+
+### Example YAML:
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: fluentd
+  template:
+    metadata:
+      labels:
+        app: fluentd
+    spec:
+      containers:
+        - name: fluentd
+          image: fluentd:latest
+```
+
+## 7. Job
+### Description:
+A **Job** creates one or more Pods and ensures that a specified number of them successfully terminate.
+
+### Purpose:
+- Used for running batch jobs, where the job runs to completion (e.g., data processing, backups).
+- Ensures that all Pods complete their task and then terminates.
+
+### Use Case:
+- Running batch jobs that should run once and then finish, like a data migration or file processing job.
+
+### Example YAML:
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: data-migration-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: migration
+          image: migration-script:latest
+      restartPolicy: Never
+  backoffLimit: 4
+```
+
+## 8. CronJob
+
+### Description:
+A **CronJob** is similar to a Job but runs on a scheduled basis, much like a cron job in Linux.
+
+### Purpose:
+- Runs jobs periodically at specified times (e.g., every day at midnight).
+- Useful for scheduled tasks like backups, report generation, or cleanup tasks.
+
+### Use Case:
+- Running periodic jobs on a set schedule, such as database backups or sending emails.
+
+### Example YAML:
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup-cronjob
+spec:
+  schedule: "0 0 * * *"  # Daily at midnight
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: backup
+              image: backup-script:latest
+          restartPolicy: OnFailure
+```
+
+## 9. ConfigMap
+
+### Description:
+A **ConfigMap** is used to store non-sensitive configuration data in key-value pairs. It is often used to inject configuration into Pods at runtime.
+
+### Purpose:
+- Allows decoupling configuration from application code, making it easier to modify configurations without rebuilding the application.
+- Can be mounted as files or used as environment variables in containers.
+
+### Use Case:
+- Storing configuration data like database connection strings, API keys, or environment-specific settings.
+
+### Example YAML:
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  database_url: "mysql://db.example.com"
+  api_key: "myapikey"
+```
+
+## 10. Secret
+
+### Description:
+A **Secret** is similar to a ConfigMap but used specifically for storing sensitive information, such as passwords, OAuth tokens, or SSH keys.
+
+### Purpose:
+- Stores sensitive data in a more secure way than plain text (encoded in base64).
+- Kubernetes provides mechanisms to ensure that secrets are not exposed in plain text in logs, environment variables, or other places.
+
+### Use Case:
+- Managing sensitive information like passwords for databases or third-party APIs.
+
+### Example YAML:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-password
+type: Opaque
+data:
+  password: cGFzc3dvcmQxMjM=  # base64 encoded "password123"
+```
